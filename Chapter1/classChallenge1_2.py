@@ -1,0 +1,1 @@
+#!/usr/bin/env python3# -*- coding: utf-8 -*-"""Created on Wed Sep 07 10:02:49 2022 Will Townsend"""import mathimport numpy

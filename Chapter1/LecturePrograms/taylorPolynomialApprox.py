@@ -8,6 +8,7 @@ Copied as notes from Dr. Randall Cone
  
 Will Townsend
 """
+
 # import necessary libraries
 import math
 
