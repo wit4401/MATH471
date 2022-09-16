@@ -15,8 +15,8 @@ import numpy
 import math
 
 # Strategy?
-# Similar to our machine epsilon problem (Problem 1.3.10) we can "break" the system by putting a whole number n into any
-# value a, b, or c (here I use 1.0) and the other two values as decreasing at a unique rate 2-adic fractions
+# Similar to the machine epsilon problem/challenge (Problem 1.3.10) we can "break" the system by putting a whole number n (n != 0)
+# into any value a, b, or c (here I use 1.0) and the other two values as 2-adic fractions decreasing at a unique rate
 
 # Part a
 a = b = c = 1.0  # set all of our initial values as 
@@ -30,7 +30,7 @@ while (((a+b)+c==a+(b+c))):
    
    a = 2**(-i) # decrease our value of 2-adic fraction 
    
-   # b will not be changed here since we need the value to stay constant (as a control in our experiment loop)
+   # b will not be changed here since we need the value to stay constant
 
    c = 2.0 * 2**(-i) # also decrease however this one decreases half as fast
    
@@ -45,7 +45,9 @@ print('\nAfter {:d} iterations, when a = {:20.20f}, b = {:20.20f}, and c = {:20.
 # Interesting Observations:
 # 1) It doesn't matter which value holds our 1.0
 # 2) The resulting values from the calculation are approximantely equivalent but not quite
+# 3) The higher we make our constant value the less iterations it takes to find a, and c
 
+"""
 # Part b
 
 # The loop here is essitially the same idea expect we are going to cast our values as 
@@ -73,3 +75,4 @@ print('\nAfter {:d} iterations, when a = {:20.20f}, b = {:20.20f}, and c = {:20.
 # 1) Just as perdicted it takes less iterations for the system to find values a, b, and c that hold true when
 #    in single precision vs double precision
 # 2) And with that the two resulting values are also less accurate than double precision
+"""
