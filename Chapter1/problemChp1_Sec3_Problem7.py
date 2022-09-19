@@ -3,6 +3,9 @@ Will Townsend
 
 Problem 1.3.7
 
+"I accessed help from the numpy online manual"
+numpy.org
+
 a) Using the computer of your choice, find three values 
    a, b, and c s.t.:
 
@@ -14,8 +17,8 @@ b) Now do this in single precision using MATLAB (or whatever
 import numpy
 import math
 
-# Strategy?
-# Similar to the machine epsilon problem/challenge (Problem 1.3.10) we can "break" the system by putting a whole number n (n != 0)
+# How are we gonna accomplish this?
+# Similar to the machine epsilon problem/challenge (Problem 1.3.10) we can "break" the system by putting a number n (n != 0)
 # into any value a, b, or c (here I use 1.0) and the other two values as 2-adic fractions decreasing at a unique rate
 
 # Part a
@@ -28,7 +31,7 @@ while (((a+b)+c==a+(b+c))):
    print('i = {:d}, ({:10.10e} + {:10.10e}) + {:10.10e} = {:10.10e}, {:10.10e} + ({:10.10e} + {:10.10e}) = {:10.10e}'\
       .format(i,a,b,c,(a+b)+c,a,b,c,a+(b+c)))
    
-   a = 2**(-i) # decrease our value of 2-adic fraction 
+   a = 2**(-i) # decrease our value of 2-adic fraction
    
    # b will not be changed here since we need the value to stay constant
 
@@ -47,7 +50,6 @@ print('\nAfter {:d} iterations, when a = {:20.20f}, b = {:20.20f}, and c = {:20.
 # 2) The resulting values from the calculation are approximantely equivalent but not quite
 # 3) The higher we make our constant value the less iterations it takes to find a, and c
 
-"""
 # Part b
 
 # The loop here is essitially the same idea expect we are going to cast our values as 
@@ -75,4 +77,3 @@ print('\nAfter {:d} iterations, when a = {:20.20f}, b = {:20.20f}, and c = {:20.
 # 1) Just as perdicted it takes less iterations for the system to find values a, b, and c that hold true when
 #    in single precision vs double precision
 # 2) And with that the two resulting values are also less accurate than double precision
-"""
