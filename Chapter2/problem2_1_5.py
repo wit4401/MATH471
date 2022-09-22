@@ -8,10 +8,9 @@ and evaluates that polynomial and takes its first derivative using Horner's Rule
 Test this code by applying it to each of the polynomials in Problem 2.
 
 Polynomials:
-a) p(x) = 1 + x^2 + (1/2)x^4 + (1/6)x^6
-b) p(x) = 1 - (1/2)x^2 + (1/24)x^4
+a) p1(x) = 1 + x^2 + (1/2)x^4 + (1/6)x^6
+b) p2(x) = 1 - (1/2)x^2 + (1/24)x^4
 """
-import math
 
 # Horner's Rule on polynomial
 #
@@ -46,18 +45,34 @@ def HornersDerivative(polyvec,val):
     for i in range(len(polyvec)-2,0,-1):
         p = p * val**2 + polyvec[i] * i*2
 
-    # however we are not done since we need to account for the fact our
-    # polynomials have all odd powers after the derivative was taken 
+    # However we are not done since we need to account for the fact our
+    # polynomial has all odd powers after the derivative is taken 
     # 
     # All the powers taken of the value are even which will result in an 
     # inaccurate result for our derivative (this was not needed in the
     # original algorithm)
     # 
-    # this is fixed by divide our result from the above loop by our val
-    p = p / val
+    # this is fixed by multiplying our result from the above loop by our val
+    # (think back to how to do a nested loop for odd powers)
+    p = p * val
 
     return p
 
 # Finally let's test the two functions by applying the polynomials given in Problem 2
 poly1 = [1, 1, 1/2, 1/6]
 poly2 = [1, -1/2, 1/24]
+
+# And let's define some x values for our polynomials
+vals = [0.0, 0.5, 1.0, 1.5, 2.0]
+
+
+# loop for our first polynomial
+for x in vals:
+    print('p1({}) = {}'.format(x,HornersRuleEven(poly1,x)))
+    print('p1\'({}) = {}\n'.format(x,HornersDerivative(poly1,x)))
+"""
+# loop for our second polynomial
+for x in vals:
+    print('p2({}) = {}'.format(x,HornersRuleEven(poly2,x)))
+    print('p2\'({}) = {}\n'.format(x,HornersDerivative(poly2,x)))
+ """   
