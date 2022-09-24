@@ -70,9 +70,8 @@ vals = [0.0, 0.5, 1.0, 1.5, 2.0]
 for x in vals:
     print('p1({}) = {}'.format(x,HornersRuleEven(poly1,x)))
     print('p1\'({}) = {}\n'.format(x,HornersDerivative(poly1,x)))
-"""
+
 # loop for our second polynomial
 for x in vals:
     print('p2({}) = {}'.format(x,HornersRuleEven(poly2,x)))
     print('p2\'({}) = {}\n'.format(x,HornersDerivative(poly2,x)))
- """   
