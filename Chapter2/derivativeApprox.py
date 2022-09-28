@@ -4,7 +4,7 @@ Problem 2.2.3
 Write a computer program that uses the same derivative
 approximations as in the previous problem to approximate
 the first derivative at x=1 for each of the following 
-functions using h^-1=4, 6, 8, 16. Verigy that the predicted
+functions using h^-1=4, 8, 16, 32. Verigy that the predicted
 theoretical accuracy is obtained - in other words, show that
 your results are consistent with the analysis in this section.
 
@@ -38,7 +38,7 @@ def dfunct(x):
     #return 1/x
 
 xval = 1.0
-hvals = [2**-4,2**-6,2**-8,2**-16]
+hvals = [2**-4,2**-8,2**-16,2**-32]
 for i in hvals:
     print('When h = {}:'.format(i))
     print('Naive Approximation of the function at {}: {}'.format(xval, naiveApprox(funct, xval, i)))
