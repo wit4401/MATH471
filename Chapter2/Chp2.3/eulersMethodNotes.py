@@ -1,5 +1,8 @@
 # eulersMethodNotes.py (10.03.2022)
 #
+# (Note: All this code was copied from Dr. Randall Cone 
+# and is not original work by me.)
+#
 # Euler's Method for IVP (Chp 2.3)
 
 import math
