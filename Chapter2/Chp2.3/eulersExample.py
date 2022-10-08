@@ -59,21 +59,21 @@ t = np.linspace(a,b,17,endpoint=True)
 res3=eulersMethod(ode3, t, y0, 1/16)
 exact = np.array([exactSol(x) for x in t])
 
+plt.figure(figsize=(7,8))
 plt.plot(exact,label='7) exact')
 plt.plot(res3,label='7) approx')
 plt.legend()
-plt.show()
 
 # Problem 8
 def exactSol2(t):
     return math.log(math.exp(t)-1+math.exp(-1))
 
+plt.figure(figsize=(7,8))
 res2 = eulersMethod(ode2, t, -1, 1/16)
 exact2 = np.array([exactSol2(x) for x in t])
 plt.plot(exact2,label='8) exact')
 plt.plot(res2,label='8) approx')
 plt.legend()
-plt.show()
 
 # Problem 9
 def ode4(t,y):
@@ -81,6 +81,7 @@ def ode4(t,y):
 def exactSol3(t):
     return (-1*math.cos(t)+math.sin(t)-math.exp(-1*t))/2
 
+plt.figure(figsize=(7,8))
 res4 = eulersMethod(ode4, t, -1, 1/16)
 exact3 = np.array([exactSol3(x) for x in t])
 plt.plot(exact3,label='9) exact')
