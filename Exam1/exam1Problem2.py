@@ -30,24 +30,24 @@ def hornersRule(polyvec, val):
     result.append(dp)
     return result
 
-poly1 = [13,0,0,0,0,0,0,0,0,0,0,0,0,1]
+poly1=[13,0,0,0,0,0,0,0,0,0,0,0,0,1]
 poly2=[-6,5,-4,3,-2,1]
 poly3=[1,1,1,1,1,1,1,1,1,1,1]
 x0=[1,2]
 
 for x in x0:
     res = hornersRule(poly1,x)
-    print('p1({}) = {}'.format(x,res[0]))
-    print('p1\'({}) = {}'.format(x,res[1]))
+    print('a({}) = {}'.format(x,res[0]))
+    print('a\'({}) = {}'.format(x,res[1]))
     print('')
 
     res = hornersRule(poly2,x)
-    print('p2({}) = {}'.format(x,res[0]))
-    print('p2\'({}) = {}'.format(x,res[1]))
+    print('b({}) = {}'.format(x,res[0]))
+    print('b\'({}) = {}'.format(x,res[1]))
     print('')
 
     res = hornersRule(poly3,x)
-    print('p3({}) = {}'.format(x,res[0]))
-    print('p3\'({}) = {}'.format(x,res[1]))
+    print('c({}) = {}'.format(x,res[0]))
+    print('c\'({}) = {}'.format(x,res[1]))
     print('')
 

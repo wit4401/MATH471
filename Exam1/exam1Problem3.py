@@ -13,7 +13,7 @@ def funct1(x):
     return 10*math.cos(2*x)
 
 def funct2(x):
-    return (math.exp(-1*x)-math.exp(x))/2
+    return (math.exp(x)-math.exp(-1.0*x))/2
 
 def funct3(x):
     return x**x
