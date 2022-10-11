@@ -26,6 +26,6 @@ for func in functs:
     i+=1
     print('Part {}:'.format(i))
     print('When h = {}:'.format(hval))
-    print('Better Approximation of the function at {}: {}'.format(xval, naiveApprox(func, xval, hval)))
-    print('Even Better Approximation of the function at {}: {}'.format(xval,betterApprox(func, xval, hval)))
+    print('Naive Approximation of the function at {}: {}'.format(xval, naiveApprox(func, xval, hval)))
+    print('Better Approximation of the function at {}: {}'.format(xval,betterApprox(func, xval, hval)))
     print('')
