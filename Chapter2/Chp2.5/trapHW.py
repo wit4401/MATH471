@@ -11,6 +11,21 @@ def trapezoidal_method(f,lowerLim,upperLim,n):
         sum+=f(x)
     return sum*h
 
+def ErrorTrap(lowlim,uplim,errtol,fdoubleprime_bound,verbose=False):
+    MAX=1000
+    for n in range(1,MAX):
+        #Slower move linearly through # of subintervals:
+        h=(uplim-lowlim)/n
+
+        # Estimate error bound for Trapezoidal approx to integral:
+        err=(uplim-lowlim)/12.0*math.pow(h,2)*fdoubleprime_bound
+
+        if err<=errtol:
+            if verbose:
+               print('Approx within {:8.8f} for {} where h  = {:10.8f}'\
+                     .format(err,n,h))
+            return n
+
 def funct1(x):
     return x**3
 
@@ -31,3 +46,21 @@ def funct6(x):
 
 def funct7(x):
     return math.exp(-1.0*(x**2))
+
+def funct8(x):
+    return x**2*math.exp(-1.0*x)
+
+def funct9(x):
+    return 1/(1+25*x**2)
+
+def funct10(x):
+    return math.sqrt(1-x**2)
+
+def funct11(x):
+    return math.log(x,math.exp(1.0))
+
+def funct12(x):
+    return x**(5/2)
+
+def funct13(x):
+    return math.exp(-1.0*x)*math.sin(4*x)

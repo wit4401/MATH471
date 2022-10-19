@@ -26,7 +26,7 @@ def Trap1(f,n,lowlim,uplim):
     return (h/2)*val
 
 def ErrorTrap(lowlim,uplim,errtol,fdoubleprime_bound,verbose=False):
-    MAX=1000
+    MAX=10000
     for n in range(1,MAX):
         #Slower move linearly through # of subintervals:
         h=(uplim-lowlim)/n
