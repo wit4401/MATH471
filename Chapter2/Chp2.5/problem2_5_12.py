@@ -1,5 +1,7 @@
-import trapHW as ex
+import sys
 import math
+sys.path.append('/Users/williamtownsend/Desktop/SchoolWork/Fall2022/MATH471')
+import coursefuncts.chp2 as ex
 
 bounds=[[0,2],[0,1],[-1,1],[1,3],[0,1],[0,math.pi]]
 error_tolerances=[math.pow(10.0,-3.0),math.pow(10.0,-6.0)]

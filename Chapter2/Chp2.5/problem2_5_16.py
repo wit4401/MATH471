@@ -1,7 +1,21 @@
-import trapHW as ex
+import sys
 import math
+sys.path.append('/Users/williamtownsend/Desktop/SchoolWork/Fall2022/MATH471')
+import coursefuncts.chp2 as ex
 
-functs=[ex.funct14,ex.funct15,ex.funct16,ex.funct17]
+def funct1(x):
+    return math.exp(-1.0*x**2)
+
+def funct2(x):
+    return math.log(x,math.exp(1.0))
+
+def funct3(x):
+    return 1/(1+x**2)
+
+def funct4(x):
+    return math.cos(math.pi*x/2)
+
+functs=[funct1,funct2,funct3,funct4]
 bounds=[[0,1],[1,3],[-5,5],[0,1]]
 actualVal=[0.7468241328,1.295836866,2.746801534,0.6366197724]
 error_tolerance=math.pow(10.0,-8.0)
