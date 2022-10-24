@@ -12,7 +12,7 @@ def trapezoidal_method(f,lowerLim,upperLim,n):
     return sum*h
 
 def ErrorTrap(lowlim,uplim,errtol,fdoubleprime_bound,verbose=False):
-    MAX=1000
+    MAX=100000
     for n in range(1,MAX):
         #Slower move linearly through # of subintervals:
         h=(uplim-lowlim)/n
@@ -64,3 +64,21 @@ def funct12(x):
 
 def funct13(x):
     return math.exp(-1.0*x)*math.sin(4*x)
+
+def funct14(x):
+    return math.exp(-1.0*x**2)
+
+def funct15(x):
+    return math.log(x,math.exp(1.0))
+
+def funct16(x):
+    return 1/(1+x**2)
+
+def funct17(x):
+    return math.cos(math.pi*x/2)
+
+def funct18(x):
+    return math.sqrt(1+math.cos(x)**2)
+
+def funct19(x):
+    return math.sqrt(1+(1/x)**2)
