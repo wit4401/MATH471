@@ -29,7 +29,6 @@ def problem3():
                 print('\nn = {} for error tolerance {}\n'.format(i,errorTolerance))
             else:
                 i+=1 
-
-if __name__=="__main__":
+if __main__ == "__main__":
     problem2()
     problem3()
