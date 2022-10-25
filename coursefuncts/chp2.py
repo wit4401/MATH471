@@ -1,6 +1,9 @@
 # This file is a library that contains all the functions buit for the sections
 # covered in Chapter 2 (2.1-2.7)
+import sys
 import math
+import matplotlib.pyplot as plt
+import numpy as np
 
 """ Chapter 2.1: Horner's Rule and Nested Multiplication """
 def hornersRule(polyvec, val):
@@ -118,3 +121,17 @@ def ErrorTrap(lowlim,uplim,errtol,fdoubleprime_bound,verbose=False):
             return n
 
 """ Chapter 2.6 Solutions to Tridiagonal Linear Systems """
+def solve_tridiagonal(lower,diagonal,upper):
+    # Forward phase
+    for i in range(1,len(diagonal)):
+        pass
+    # Backward phase
+    for i in range(len(diagonal)-1,-1,-1):
+        pass
+# the main function for the current program
+def main(argv):
+    print('Hello World')
+    
+if __name__ == "__main__":
+    #call main function
+    main(sys.argv[1:])
