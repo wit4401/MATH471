@@ -121,13 +121,21 @@ def ErrorTrap(lowlim,uplim,errtol,fdoubleprime_bound,verbose=False):
             return n
 
 """ Chapter 2.6 Solutions to Tridiagonal Linear Systems """
-def solve_tridiagonal(lower,diagonal,upper):
+def solve_tridiagonal(lower,diagonal,upper,coeff):
     # Forward phase
     for i in range(1,len(diagonal)):
-        pass
-    # Backward phase
-    for i in range(len(diagonal)-1,-1,-1):
-        pass
+        diagonal[i]-=upper[i-1]*lower[i]/diagonal[i-1]
+        coeff[i]-=coeff[i-1]*lower[i]/diagonal[i-1]
+    print('Diagonal: {}\nCoefficients: {}'.format(diagonal,coeff))
+    # Backsolve phase
+    coeff[-1]/=diagonal[-1]
+    for i in range(len(diagonal)-2,-1,-1):
+        coeff[i]-=upper[i]*coeff[i+1]
+        coeff[i]/=diagonal[i]
+    return coeff
+
+""" Chapter 2.7 Application: Simple Two-Point Boundary Value Problems """
+
 # the main function for the current program
 def main(argv):
     print('Hello World')
