@@ -116,7 +116,7 @@ def ErrorTrap(lowlim,uplim,errtol,fdoubleprime_bound,verbose=False):
 
         if err<=errtol:
             if verbose:
-               print('Approx within {:8.8f} for {} where h  = {:10.8f}'\
+               print('Approx within {} for {} where h  = {:10.8f}'\
                      .format(err,n,h))
             return n
 
