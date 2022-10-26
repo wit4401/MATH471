@@ -124,6 +124,7 @@ def ErrorTrap(lowlim,uplim,errtol,fdoubleprime_bound,verbose=False):
 def __solve_tridiagonal(A,b):
     numrows,numcols = A.shape
     
+    # obtains the diagonals from the matrix
     diagonal=np.diagonal(A,0,0,1).copy()
     upper=np.diagonal(A,1,0,1).copy()
     lower=np.diagonal(A,-1,0,1).copy()
@@ -142,35 +143,68 @@ def __solve_tridiagonal(A,b):
 
 def isTridiagonal(A):
     retval=True
-    
+
     return retval
 
-def isTriDominant(A):
+def isDominant(A):
     retval=True
     numrows,numcols=A.shape
-    start=0
-    for i in range(start,numrows):
+    for i in range(0,numrows):
         total=0
-        for j in range(start+1,numcols):
-            if A[i,j] == 0:
-                j=numcols
-            else:
-                total+=A[i,j]
+        for j in range(0,numcols):
+            if i!=j:
+                total+=abs(A[i,j])
+        # Our check condition for each row to check for dominance
         if total > A[i,i]:
             retval=False
             break
-        start+=1
     return retval
 
 def tridiagonal(A,b):
     retval=False
     if isTridiagonal(A):
-        if isTriDominant(A):
+        if isDominant(A):
             retval = __solve_tridiagonal(A, b)
         else:
-            print('Given matrix is not Tridiagonally Dominant')
+            print('Given matrix is not Diagonally Dominant')
+            print('Try to compute anyway (y/n)? ',end='')
+            inp = str(input())
+            if inp == 'y' or inp == 'Y':
+                retval = __solve_tridiagonal(A, b)
     else:
         print('Given matrix is not Tridiagonal.')
+    return retval
+
+def pentadiagonal(A,b):
+    numcols,numrows = A.shape
+
+    # obtains the diagonals from the matrix
+    diagonal=np.diagonal(A,0,0,1).copy()
+    upper=np.diagonal(A,1,0,1).copy()
+    upperMid=np.diagonal(A,2,0,1).copy()
+    lowerMid=np.diagonal(A,-2,0,1).copy()
+    lower=np.diagonal(A,-1,0,1).copy()
+    coeff=b
+
+    for i in range(0,numcols-1):
+        diagonal[i]-=upper[i-1]*lower[i-1]/diagonal[i-1]
+        coeff[i]-=coeff[i-1]*lower[i-1]/diagonal[i-1]
+    
+    for i in range(numcols-2,-1,-1):
+        coeff[i]-=upper[i]*coeff[i+1]
+        coeff[i]/=diagonal[i]
+    return coeff
+
+def pentadiagonal(A,b):
+    retval = False
+    if isDominant(A):
+        retval = __solve_pentadiagonal(A,b)
+    else:
+        print('Given matrix is not Diagonally Dominant')
+        print('Try to compute anyway (y/n)? ',end='')
+        inp = str(input())
+        if inp == 'y' or inp == 'Y':
+            retval = __solve_pentadiagonal(A, b)
     return retval
 
 # the main function for the current program
