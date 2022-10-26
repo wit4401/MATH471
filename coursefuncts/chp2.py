@@ -121,20 +121,57 @@ def ErrorTrap(lowlim,uplim,errtol,fdoubleprime_bound,verbose=False):
             return n
 
 """ Chapter 2.6 Solutions to Tridiagonal Linear Systems """
-def solve_tridiagonal(lower,diagonal,upper,coeff):
+def __solve_tridiagonal(A,b):
+    numrows,numcols = A.shape
+    
+    diagonal=np.diagonal(A,0,0,1).copy()
+    upper=np.diagonal(A,1,0,1).copy()
+    lower=np.diagonal(A,-1,0,1).copy()
+    coeff=b
+
     # Forward phase
-    for i in range(1,len(diagonal)):
-        diagonal[i]-=upper[i-1]*lower[i]/diagonal[i-1]
-        coeff[i]-=coeff[i-1]*lower[i]/diagonal[i-1]
-    print('Diagonal: {}\nCoefficients: {}'.format(diagonal,coeff))
+    for i in range(1,numrows):
+        diagonal[i]-=upper[i-1]*lower[i-1]/diagonal[i-1]
+        coeff[i]-=coeff[i-1]*lower[i-1]/diagonal[i-1]
     # Backsolve phase
     coeff[-1]/=diagonal[-1]
-    for i in range(len(diagonal)-2,-1,-1):
+    for i in range(numrows-2,-1,-1):
         coeff[i]-=upper[i]*coeff[i+1]
         coeff[i]/=diagonal[i]
     return coeff
 
-""" Chapter 2.7 Application: Simple Two-Point Boundary Value Problems """
+def isTridiagonal(A):
+    retval=True
+    
+    return retval
+
+def isTriDominant(A):
+    retval=True
+    numrows,numcols=A.shape
+    start=0
+    for i in range(start,numrows):
+        total=0
+        for j in range(start+1,numcols):
+            if A[i,j] == 0:
+                j=numcols
+            else:
+                total+=A[i,j]
+        if total > A[i,i]:
+            retval=False
+            break
+        start+=1
+    return retval
+
+def tridiagonal(A,b):
+    retval=False
+    if isTridiagonal(A):
+        if isTriDominant(A):
+            retval = __solve_tridiagonal(A, b)
+        else:
+            print('Given matrix is not Tridiagonally Dominant')
+    else:
+        print('Given matrix is not Tridiagonal.')
+    return retval
 
 # the main function for the current program
 def main(argv):
