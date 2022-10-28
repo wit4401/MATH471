@@ -163,7 +163,7 @@ def isDominant(A):
             if i!=j:
                 total+=abs(A[i,j])
         # Our check condition for each row to check for dominance
-        if total > A[i,i]:
+        if total > abs(A[i,i]):
             retval=False
             break
     return retval

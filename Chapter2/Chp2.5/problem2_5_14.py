@@ -13,7 +13,7 @@ import math
 sys.path.append('/Users/williamtownsend/Desktop/SchoolWork/Fall2022/MATH471')
 import coursefuncts.chp2 as ex
 
-# Note: derivative of sin is cos square it plug it into the integral
+# Note: derivative of sine is cosine square it plug it into the integral
 # Also note we cannot directly integrate or use any techniques on this function
 # Thus, we need to approximate it using some approximation method
 def funct(x):
@@ -22,4 +22,4 @@ def funct(x):
 a=0 # start of arc
 b=math.pi # end of the arc
 print('Trapezoidal Estimation (h=pi/4): {}'.format(ex.trapezoidal_method(funct, a, b, 4)))
-print('Trapezoidal Estimation (h=pi/16): {}\n'.format(ex.trapezoidal_method(funct, a, b, 16)))
+print('Trapezoidal Estimation (h=pi/16): {}'.format(ex.trapezoidal_method(funct, a, b, 16)))

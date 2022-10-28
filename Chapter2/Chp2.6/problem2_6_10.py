@@ -30,7 +30,7 @@ print('Coefficients: {}\n'.format(coeff1))
 
 # Call tridiagonal function to find solutions to matrix A
 res = ex.tridiagonal(A,coeff1)
-print('Tridiagonal Solution: {}\n'.format(res))
+print('Tridiagonal Solution: {}'.format(res))
 
 # Create the matrix B and the coefficients for solving
 B = np.matrix([[1/2, 10/21, 0, 0],[1/4, 1/3, 1/13, 0],[0, 1/5, 1/4, 1/21],[0, 0, 1/6, 1/5]],dtype=np.float64)
