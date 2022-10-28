@@ -143,7 +143,15 @@ def __solve_tridiagonal(A,b):
 
 def isTridiagonal(A):
     retval=True
-
+    numcols,numrows=A.shape
+    for i in range(0,numrows):
+        for j in range(0,numcols):
+            if i==j or i-1==j or i+1==j:
+                if A[i,j] == 0:
+                    retval=False
+            else:
+                if A[i,j] != 0:
+                    retval=False
     return retval
 
 def isDominant(A):
@@ -172,10 +180,10 @@ def tridiagonal(A,b):
             if inp == 'y' or inp == 'Y':
                 retval = __solve_tridiagonal(A, b)
     else:
-        print('Given matrix is not Tridiagonal.')
+        print("Given matrix is not Tridiagonal!")
     return retval
 
-def pentadiagonal(A,b):
+def __solve_pentadiagonal(A,b):
     numcols,numrows = A.shape
 
     # obtains the diagonals from the matrix
@@ -209,7 +217,7 @@ def pentadiagonal(A,b):
 
 # the main function for the current program
 def main(argv):
-    print('Hello World')
+    print('Hello World {}'.format(argv))
     
 if __name__ == "__main__":
     #call main function
