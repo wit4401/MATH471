@@ -3,6 +3,11 @@ import numpy as np
 import matplotlib.pyplot as pyplot
 
 """ Chapter 3.1 The Bisection Method """
+def iteration_bisection(f,a,b,n):
+    for i in range(1,n):
+        pass
+def err_bisection(f,a,b,err):
+    pass
 
 """ Chapter 3.2 Newton's Method: Derivation and Examples """
 
