@@ -28,6 +28,7 @@ intervals=[[0,1],[0,2],[0,2],[0,math.pi]]
 funct_names=['e^x-2','x^6-x-1','1-2xe^(-x/2)','x^2-sin x']
 
 for i in range(0,4):
+    sol=ex.iteration_bisection(functs[i], intervals[i][0], intervals[i][1], 10000)
     results=ex.err_bisection(functs[i], intervals[i][0], intervals[i][1], err)
-    print('f(x)={}\tSteps to be accurate within {:6.6f}: {}'.format(funct_names[i],err,results[0]))
-    print('(aplha = {})\n'.format(results[1]))
+    print('f(x) = {}\tSteps to be accurate within {:6.6f}: {}'.format(funct_names[i],err,results[0]))
+    print('(aplha = {})\n'.format(sol))
