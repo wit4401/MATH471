@@ -29,7 +29,8 @@ intervals=[[0,2],[0,1],[0,3],[0.1,0.25]]
 funct_names=['x^3-2','x-e^-x','x^3-2x-5','5-x^(-1)']
 
 for i in range(0,4):
+    sol=ex.iteration_bisection(functs[i], intervals[i][0], intervals[i][1], 10000)
     results=ex.err_bisection(functs[i], intervals[i][0], intervals[i][1], err)
     print('f(x) = {}\tSteps to be accurate within {:6.6f}: {}'.format(funct_names[i],err,results[0]))
-    print('(aplha = {})\n'.format(results[1]))
+    print('(aplha = {})\n'.format(sol))
     

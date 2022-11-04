@@ -5,21 +5,29 @@ import matplotlib.pyplot as pyplot
 
 """ Chapter 3.1 The Bisection Method """
 # prints out all iterations 1 to n of bisection method using the algorithm in Chp 3.1
-def iteration_bisection(f,a,b,n):
-    low=a
-    up=b
-    for i in range(1,n+1):
-        c=low+(up-low)/2
-        if f(c)*f(low) < 0:
-            up=c
-        elif f(up)*f(c) < 0:
-            low=c
-        elif f(c) == 0:
-            print('Root of f(x) is {} after {} iterations'.format(c,i))
-        else:
-            print('Iteration Error!')
-            break
-        print('Iteration {}:\tRoot of f(x): {}'.format(i,c))
+def iteration_bisection(f,a,b,n,verbose=False):
+    if f(a)*f(b) > 0:
+        print('Error! f(a)f(b)>0!')
+        c=False
+    else:
+        low=a
+        up=b
+        for i in range(1,n+1):
+            c=low+(up-low)/2
+            if f(c)*f(low) < 0:
+                up=c
+            elif f(up)*f(c) < 0:
+                low=c
+            elif f(c) == 0:
+                if verbose:
+                    print('Root of f(x) is {} after {} iterations'.format(c,i))
+                break
+            else:
+                print('Iteration Error!')
+                break
+            if verbose:
+                print('Iteration {}:\tRoot of f(x): {}'.format(i,c))
+    return c
 
 # Returns a list [number of iterations, the root at final iteration]
 def err_bisection(f,a,b,err,verbose=False):
@@ -30,19 +38,18 @@ def err_bisection(f,a,b,err,verbose=False):
         res=[]
         low=a
         up=b
-        n = round((math.log(b-a,2)-math.log(err,2))/math.log(2,2))
+        n = math.ceil((math.log(b-a,2)-math.log(err,2)))
         res.append(n)
         for i in range(1,n+1):
             c=low+(up-low)/2
             if f(c)*f(low) < 0:
                 up=c
-            if f(up)*f(c) < 0:
+            elif f(up)*f(c) < 0:
                 low=c
             if verbose:
                 print('Iteration {}:\tRoot: {}'.format(i,c))
         res.append(c)
     return res
-    pass
 
 """ Chapter 3.2 Newton's Method: Derivation and Examples """
 def newtons_method(f,fprime,x0,err,verbose=False):
