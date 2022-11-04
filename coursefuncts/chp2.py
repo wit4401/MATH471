@@ -146,10 +146,7 @@ def isTridiagonal(A):
     numcols,numrows=A.shape
     for i in range(0,numrows):
         for j in range(0,numcols):
-            if i==j or i-1==j or i+1==j:
-                if A[i,j] == 0:
-                    retval=False
-            else:
+            if i!=j and i-1!=j and i+1!=j:
                 if A[i,j] != 0:
                     retval=False
     return retval
