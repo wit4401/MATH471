@@ -18,6 +18,6 @@ def fprime(x):
 x0s=[1,2,4,8,16]
 for x0 in x0s:
     print('x0 = {}'.format(x0))
-    ex.newtons_method_iter(f, fprime, x0, 3, True)
+    ex.newtons_method_iter(f, False, x0, 3, True)
     print('')
 
