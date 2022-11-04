@@ -99,6 +99,8 @@ def newtons_method(f,fprime,x0,err,verbose=False):
 
 def newtons_method_iter(f,fprime,x0,n,verbose=False):
     if fprime:
+        if verbose:
+            print('Derivative Function Given.')
         temp=x0-(f(x0)/fprime(x0))
         retval=0
         for i in range(1,n+1):
@@ -107,6 +109,8 @@ def newtons_method_iter(f,fprime,x0,n,verbose=False):
             if verbose:
                 print('Iteration {}\tRoot: {}'.format(i,retval))
     else:
+        if verbose:
+            print('Derivative Function NOT Given.')
         temp=x0-(f(x0)/chp2.evenBetterApprox(f, x0, math.pow(10,-5)))
         retval=0
         for i in range(1,n+1):

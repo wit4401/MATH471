@@ -149,6 +149,7 @@ def isTridiagonal(A):
             if i!=j and i-1!=j and i+1!=j:
                 if A[i,j] != 0:
                     retval=False
+                    break
     return retval
 
 def isDominant(A):
