@@ -121,7 +121,50 @@ def newtons_method_iter(f,fprime,x0,n,verbose=False):
     return retval
 
 """ Chapter 3.3 How to Stop Newton's Method """
+def another_newtons_method(f,fprime,x0,err,verbose=False):
+    if fprime:
+        if verbose:
+            print('Derivative Function Given.')
+        
+        temp = x0-(f(x0)/fprime(x0))
+        retval = temp-(f(temp)/fprime(temp))
 
+        if verbose:
+            print('Iteration 1: {}'.format(temp))
+            print('Iteration 2: {}'.format(retval))
+
+        i = 3
+        iter_max = 101
+        while i<iter_max and abs(retval-temp) + abs(f(retval))>=err/5.0:
+            temp=retval
+            retval=temp-(f(temp)/fprime(temp))
+            if verbose:
+                print('Iteration {}: {}'.format(i,retval))  
+            i+=1
+        if verbose:
+            print('')
+    else:
+        if verbose:
+            print('Derivative Function NOT Given.')
+        
+        temp = x0-(f(x0)/chp2.evenBetterApprox(f, x0, err/10.0))
+        retval = temp-(f(temp)/chp2.evenBetterApprox(f, temp, err/10.0))
+
+        if verbose:
+            print('Iteration 1: {}'.format(temp))
+            print('Iteration 2: {}'.format(retval))
+
+        i = 3
+        iter_max = 101
+        while i<iter_max and abs(retval-temp) + abs(f(retval))>=err/5.0:
+            temp=retval
+            retval=temp-(f(temp)/chp2.evenBetterApprox(f, temp, err/10.0))
+            if verbose:
+                print('Iteration {}: {}'.format(i,retval)) 
+            i+=1
+        if verbose:
+            print('')
+    return retval
 """ Chapter 3.4 Application: Division Using Newton's Method """
 
 """ Chapter 3.5 The Newton Error Formula """
