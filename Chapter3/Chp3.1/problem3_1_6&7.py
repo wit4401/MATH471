@@ -22,10 +22,10 @@ m = 30
 L = 150000
 annuity=lambda r: ((12*M)/r)*(1-(1+(r/12))**(-12*m))-L
 
-sol=ex.iteration_bisection(annuity, 0.01, 0.04, 10000)
+sol=ex.iteration_bisection(annuity, 0.01, 0.04, 100000)
 print('Interest Rate Needed if $150,000 is borrowed: {:5.5f}%'.format(sol*100))
 
 L = 100000
 annuity=lambda r: ((12*M)/r)*(1-(1+(r/12))**(-12*m))-L
-sol=ex.iteration_bisection(annuity, 0.05, 0.075, 10000)
+sol=ex.iteration_bisection(annuity, 0.05, 0.075, 100000)
 print('Interest Rate Needed if $100,000 is borrowed: {:5.5f}%'.format(sol*100))

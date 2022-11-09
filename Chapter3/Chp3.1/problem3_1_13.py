@@ -16,7 +16,15 @@ a=0
 b=5
 
 print("Bisection Method:")
-ex.iteration_bisection(f, a, b, 100,True)
+sol=ex.iteration_bisection(f, a, b, 10000000)
+if not sol:
+    print('Root Not Found')
+else:
+    print('Root: {:10.10f}'.format(sol))
 
 print("Regula-Falsi Method:")
-ex.iteration_regula_falsi(f, a, b, 100,True)
+sol=ex.iteration_regula_falsi(f, a, b, 10000000)
+if not sol:
+    print('Root Not Found')
+else:
+    print('Root: {:10.10f}'.format(sol))
