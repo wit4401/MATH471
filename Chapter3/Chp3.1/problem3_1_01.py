@@ -12,4 +12,4 @@ import coursefuncts.chp3 as ex
 def f(x):
     return x**3-2
 
-ex.iteration_bisection(f, 0, 2, 3)
+ex.iteration_bisection(f, 0, 2, 3,True)

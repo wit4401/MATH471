@@ -51,6 +51,59 @@ def err_bisection(f,a,b,err,verbose=False):
         res.append(c)
     return res
 
+def err_regula_falsi(f,a,b,err,verbose=False):
+    if f(a)*f(b) > 0:
+        print('Error! f(a)f(b)>0!')
+        res=False
+    else:
+        res=0
+        low=a
+        up=b
+
+        c=up-(f(up)*(up-low))/(f(up)-f(low))
+        if f(c)*f(low) < 0:
+            up=c
+        elif f(up)*f(c) < 0:
+            low=c
+        res+=1
+        if verbose:
+            print('Iteration {}:\tRoot: {}'.format(res,c))
+        temp=up-(f(up)*(up-low))/(f(up)-f(low))
+
+        while abs(temp-c)>math.pow(10,-6):
+            temp=c
+            c=up-(f(up)*(up-low))/(f(up)-f(low))
+            if f(c)*f(low) < 0:
+                up=c
+            elif f(up)*f(c) < 0:
+                low=c
+            if verbose:
+                print('Iteration {}:\tRoot: {}'.format(res+1,c))
+            res+=1
+    return res
+def iteration_regula_falsi(f,a,b,n,verbose=False):
+    if f(a)*f(b) > 0:
+        print('Error! f(a)f(b)>0!')
+        c=False
+    else:
+        low=a
+        up=b
+        for i in range(1,n+1):
+            c=up-(f(up)*(up-low))/(f(up)-f(low))
+            if f(c)*f(low) < 0:
+                up=c
+            elif f(up)*f(c) < 0:
+                low=c
+            elif f(c) == 0:
+                if verbose:
+                    print('Root of f(x) is {} after {} iterations'.format(c,i))
+                break
+            else:
+                print('Iteration Error!')
+                break
+            if verbose:
+                print('Iteration {}:\tRoot of f(x): {}'.format(i,c))
+    return c
 """ Chapter 3.2 Newton's Method: Derivation and Examples """
 def newtons_method(f,fprime,x0,err,verbose=False):
     if fprime:
@@ -166,6 +219,27 @@ def another_newtons_method(f,fprime,x0,err,verbose=False):
             print('')
     return retval
 """ Chapter 3.4 Application: Division Using Newton's Method """
+def newtons_division(adiv,err,verbose=False):
+    # using knowlege from 3.4 we can derive this formula for our intial value
+    x0=3-2*adiv
+
+    # then apply the equation to the inverse of fraction we are finding and the 
+    # initial value starting with the first two iterations.
+    temp=x0*(2-x0*adiv)
+    retval=temp*(2-temp*adiv)
+
+    if verbose:
+        print('x{} = {}'.format(1,temp))
+        print('x{} = {}'.format(2,retval))
+    i = 3
+    iter_max = 101
+    while i<iter_max and abs(retval-temp) + abs(f(retval))>=err/5.0:
+        temp=retval
+        retval=temp*(2-temp*adiv)
+        if verbose:
+            print('x{} = {}'.format(i,retval))
+        i=+1
+
 
 """ Chapter 3.5 The Newton Error Formula """
 
