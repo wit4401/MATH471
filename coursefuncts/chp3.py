@@ -6,9 +6,9 @@ import matplotlib.pyplot as pyplot
 """ Chapter 3.1 The Bisection Method """
 # prints out all iterations 1 to n of bisection method using the algorithm in Chp 3.1
 def iteration_bisection(f,a,b,n,verbose=False):
+    retval=False
     if f(a)*f(b) > 0:
-        print('Error! f(a)f(b)>0!')
-        c=False
+        print('Error! f(a)f(b)>0!') 
     else:
         low=a
         up=b
@@ -19,6 +19,7 @@ def iteration_bisection(f,a,b,n,verbose=False):
             elif f(up)*f(c) < 0:
                 low=c
             elif f(c) == 0:
+                retval=c
                 if verbose:
                     print('Root of f(x) is {} after {} iterations'.format(c,i))
                 break
@@ -27,7 +28,7 @@ def iteration_bisection(f,a,b,n,verbose=False):
                 break
             if verbose:
                 print('Iteration {}:\tRoot of f(x): {}'.format(i,c))
-    return c
+    return retval
 
 # Returns a list [number of iterations, the root at final iteration]
 def err_bisection(f,a,b,err,verbose=False):
@@ -81,10 +82,11 @@ def err_regula_falsi(f,a,b,err,verbose=False):
                 print('Iteration {}:\tRoot: {}'.format(res+1,c))
             res+=1
     return res
+
 def iteration_regula_falsi(f,a,b,n,verbose=False):
+    retval=False
     if f(a)*f(b) > 0:
         print('Error! f(a)f(b)>0!')
-        c=False
     else:
         low=a
         up=b
@@ -95,6 +97,7 @@ def iteration_regula_falsi(f,a,b,n,verbose=False):
             elif f(up)*f(c) < 0:
                 low=c
             elif f(c) == 0:
+                retval=c
                 if verbose:
                     print('Root of f(x) is {} after {} iterations'.format(c,i))
                 break
@@ -103,7 +106,8 @@ def iteration_regula_falsi(f,a,b,n,verbose=False):
                 break
             if verbose:
                 print('Iteration {}:\tRoot of f(x): {}'.format(i,c))
-    return c
+    return retval
+
 """ Chapter 3.2 Newton's Method: Derivation and Examples """
 def newtons_method(f,fprime,x0,err,verbose=False):
     if fprime:
