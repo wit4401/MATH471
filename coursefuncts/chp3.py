@@ -71,7 +71,7 @@ def err_regula_falsi(f,a,b,err,verbose=False):
             print('Iteration {}:\tRoot: {}'.format(res,c))
         temp=up-(f(up)*(up-low))/(f(up)-f(low))
 
-        while abs(temp-c)>math.pow(10,-6):
+        while abs(temp-c)>err:
             temp=c
             c=up-(f(up)*(up-low))/(f(up)-f(low))
             if f(c)*f(low) < 0:
@@ -237,12 +237,12 @@ def newtons_division(adiv,err,verbose=False):
         print('x{} = {}'.format(2,retval))
     i = 3
     iter_max = 101
-    while i<iter_max and abs(retval-temp) + abs(f(retval))>=err/5.0:
+    while i<iter_max and abs(1/adiv-retval)>=err/5.0:
         temp=retval
         retval=temp*(2-temp*adiv)
         if verbose:
             print('x{} = {}'.format(i,retval))
-        i=+1
+        i+=1
 
 
 """ Chapter 3.5 The Newton Error Formula """
