@@ -244,7 +244,6 @@ def newtons_division(adiv,err,verbose=False):
             print('x{} = {}'.format(i,retval))
         i+=1
 
-
 """ Chapter 3.5 The Newton Error Formula """
 
 """ Chapter 3.6 Newton's Method: Theory and Convergence """
@@ -256,5 +255,3 @@ def newtons_division(adiv,err,verbose=False):
 """ Chapter 3.9 Fixed-Point Iteration """
 
 """ Chapter 3.10  Roots of Polynomials Part I """
-
-""" Chapter 3.11 Special Topics in Root Finding Methods """
