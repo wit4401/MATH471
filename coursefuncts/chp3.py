@@ -164,7 +164,7 @@ def newtons_method_iter(f,fprime,x0,n,verbose=False):
             retval = temp-(f(temp)/fprime(temp))
             temp=retval
             if verbose:
-                print('Iteration {}\tRoot: {}'.format(i,retval))
+                print('Iteration {}\tRoot: {:20.20f}'.format(i,retval))
     else:
         if verbose:
             print('Derivative Function NOT Given.')
@@ -174,7 +174,7 @@ def newtons_method_iter(f,fprime,x0,n,verbose=False):
             retval = temp-(f(temp)/chp2.evenBetterApprox(f, temp, math.pow(10,-5)))
             temp=retval
             if verbose:
-                print('Iteration {}\tRoot: {}'.format(i,retval))
+                print('Iteration {}\tRoot: {:20.20f}'.format(i,retval))
     return retval
 
 """ Chapter 3.3 How to Stop Newton's Method """
