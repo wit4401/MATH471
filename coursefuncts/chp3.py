@@ -244,14 +244,26 @@ def newtons_division(adiv,err,verbose=False):
             print('x{} = {}'.format(i,retval))
         i+=1
 
-""" Chapter 3.5 The Newton Error Formula """
-
-""" Chapter 3.6 Newton's Method: Theory and Convergence """
-
 """ Chapter 3.7 Application: Computation of the Square Root """
-
+def sqrt_estimate():
+    pass
 """ Chapter 3.8 The Secant Method: Derivation and Examples """
+def secant_method(x0,x1,f,err,verbose=False):
+    i=1
+    max_iter = 101
 
+    f0=f(x0)
+    f1=f(x1)
+
+    retval= x1 - f1*((x1-x0)/(f1-f0))
+    temp=x1
+    while i < max_iter and abs(retval-temp)>err:
+        if verbose:
+            print('Iteration {}: {:10.10f}'.format(i,retval))
+        retval = retval - f(retval)*((retval-temp)/(f(retval)-f(temp)))
+        temp=retval
+        i+=1
+    return retval
 """ Chapter 3.9 Fixed-Point Iteration """
 
 """ Chapter 3.10  Roots of Polynomials Part I """
