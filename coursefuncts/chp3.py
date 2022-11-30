@@ -8,7 +8,7 @@ import matplotlib.pyplot as pyplot
 def iteration_bisection(f,a,b,n,verbose=False):
     retval=False
     if f(a)*f(b) > 0:
-        print('Error! f(a)f(b)>0!') 
+        print('Error! f(a)f(b)>0!')
     else:
         low=a
         up=b
@@ -248,22 +248,42 @@ def newtons_division(adiv,err,verbose=False):
 def sqrt_estimate():
     pass
 """ Chapter 3.8 The Secant Method: Derivation and Examples """
-def secant_method(x0,x1,f,err,verbose=False):
+def secant_method_err(x0,x1,f,err,verbose=False):
     i=1
+    x=0
     max_iter = 101
 
     f0=f(x0)
     f1=f(x1)
 
-    retval= x1 - f1*((x1-x0)/(f1-f0))
-    temp=x1
-    while i < max_iter and abs(retval-temp)>err:
+    while i < max_iter and abs(x1-x0)>=err:
+        x = x1 - f1*(x1-x0)/(f1-f0)
+        x0=x1
+        x1=x
+        f0=f1
+        f1=f(x)
         if verbose:
-            print('Iteration {}: {:10.10f}'.format(i,retval))
-        retval = retval - f(retval)*((retval-temp)/(f(retval)-f(temp)))
-        temp=retval
+            print('Iteration {}: {:10.10f}'.format(i,x))
         i+=1
-    return retval
-""" Chapter 3.9 Fixed-Point Iteration """
+    return x
 
-""" Chapter 3.10  Roots of Polynomials Part I """
+def secant_method_iter(x0,x1,f,n,verbose=False):
+    x=0
+    i=n+1
+    max_iter = 101
+
+    f0=f(x0)
+    f1=f(x1)
+
+    while n>0:
+        x = x1 - f1*(x1-x0)/(f1-f0)
+        x0=x1
+        x1=x
+        f0=f1
+        f1=f(x)
+        if verbose:
+            print('Iteration {}: {:10.10f}'.format(i-n,x))
+        n-=1
+    return x
+
+""" Chapter 3.9 Fixed-Point Iteration """
