@@ -287,3 +287,20 @@ def secant_method_iter(x0,x1,f,n,verbose=False):
     return x
 
 """ Chapter 3.9 Fixed-Point Iteration """
+def fixed_point_solver(x0,a,b,f,err=False,verbose=False):
+    max_iter = 101
+    i=0
+    result=f(x0)
+    if err:
+        while abs(f(result) - result) >= err and max_iter>i:
+            if verbose:
+                print("Iteration: {}\nalpha: {}\n".format(i+1,result))
+            result=f(result)
+            i+=1
+    else:
+        while f(result)!=result and max_iter>i:
+            if verbose:
+                print("Iteration: {}\nalpha: {}\n".format(i+1,result))
+            result=f(result)
+            i+=1
+    return result
