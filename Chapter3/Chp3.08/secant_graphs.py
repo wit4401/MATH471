@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 sys.path.append('/Users/williamtownsend/Desktop/SchoolWork/Fall2022/MATH471')
 import coursefuncts.chp3 as ex
 
-
 def plot_function(f,a,b,name='f(x)'):
     retval=[]
     x=np.linspace(a,b,100,endpoint=True)
@@ -22,8 +21,10 @@ def get_secants(x0,x1,f,n,verbose=False):
     f1=f(x1)
 
     while n>0:
+        secantList=[]
         x = x1 - f1*(x1-x0)/(f1-f0)
-        secants.append(-1.0*(x1-x0)/(f1-f0))
+        secantList.append((f0*x1-f1*x0)/(x1-x0))
+        secantList.append((f1-f0)/(x1-x0))
         x0=x1
         x1=x
         f0=f1
@@ -31,6 +32,7 @@ def get_secants(x0,x1,f,n,verbose=False):
         if verbose:
             print('Iteration {}: {:10.10f}'.format(i-n,x))
         n-=1
+        secants.append(secantList)
     return secants
 
 if __name__ == "__main__":
@@ -46,33 +48,41 @@ if __name__ == "__main__":
 
     for i in range(0,len(functions)):
         sec=[]
+        secant_plots=[]
         if i!=3:
             secs=get_secants(x0, x1s[i], functions[i], 5,True)
+            for line in secs:
+                secant_plots.append(plot_function(lambda x: line[0]+line[1]*x, -1, 2))
         else:
             secs=get_secants(0.1, x1s[i], functions[i], 5,True)
-        axis=plot_function(functions[i], -2, 2)
-        secant_plots=[]
-        for line in secs:
-            secant_plots.append(plot_function(lambda x: line*x, -2, 2))
+            for line in secs:
+                secant_plots.append(plot_function(lambda x: line[0]+line[1]*x, 0.01, 0.5))
+        
         if i==0:
+            axis=plot_function(functions[i], -1, 3)
             graphs[0,0].plot(axis[0],axis[1])
             for sec in secant_plots:
                 graphs[0,0].plot(sec[0],sec[1])
             graphs[0,0].set_title(func_names[i])
+        
         elif i==1:
+            axis=plot_function(functions[i], -1, 1)
             graphs[0,1].plot(axis[0],axis[1])
             for sec in secant_plots:
                 graphs[0,1].plot(sec[0],sec[1])
             graphs[0,1].set_title(func_names[i])
+        
         elif i==2:
+            axis=plot_function(functions[i], -1, 3)
             graphs[1,0].plot(axis[0],axis[1])
             for sec in secant_plots:
                 graphs[1,0].plot(sec[0],sec[1])
             graphs[1,0].set_title(func_names[i])
+        
         else:
+            axis=plot_function(functions[i], 0.01, 0.5)
             graphs[1,1].plot(axis[0],axis[1])
             for sec in secant_plots:
                 graphs[1,1].plot(sec[0],sec[1])
             graphs[1,1].set_title(func_names[i])
-    
     plt.show()
